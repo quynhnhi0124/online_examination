@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c59f3f22-6b55-42b9-b9a6-3e52a747cd5c" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/online-examination/.env" beforeDir="false" afterPath="$PROJECT_DIR$/online-examination/.env" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/online-examination/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/online-examination/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/online-examination/database/migrations/2014_10_12_000000_create_users_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/online-examination/database/migrations/2014_10_12_000000_create_users_table.php" afterDir="false" />
-    </list>
+    <list default="true" id="c59f3f22-6b55-42b9-b9a6-3e52a747cd5c" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -145,7 +141,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1610608493602</updated>
-      <workItem from="1610608497467" duration="5796000" />
+      <workItem from="1610608497467" duration="6516000" />
     </task>
     <servers />
   </component>
