@@ -1,32 +1,48 @@
-
 <!DOCTYPE HTML>
 
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <!--head-->
 @include('admin.partials.head')
 <!--//head-->
-<body class="cbp-spmenu-push">
-<div class="main-content">
-@include('admin.partials.sidebar')
-<!--left-fixed -navigation-->
 
-    <!-- header-starts -->
-@include('admin.partials.header')
-<!-- //header-ends -->
-    <!-- main content start-->
-    <div id="page-wrapper">
-        <div class="main-page">
-            @yield('content')
+<body id="page-top">
+
+<!-- Page Wrapper -->
+<div id="wrapper">
+
+    <!-- Sidebar -->
+@include('admin.partials.sidebar')
+<!-- End of Sidebar -->
+
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+
+        <!-- Main Content -->
+        <div id="content">
+
+            <!-- Topbar -->
+        @include('admin.partials.header')
+        <!-- End of Topbar -->
+
+            <!-- Begin Page Content -->
+        @yield('content')
+        <!-- /.container-fluid -->
+
         </div>
+        <!-- End of Main Content -->
+
+        <!-- Footer -->
+    @include('admin.partials.footer')
+    <!-- End of Footer -->
 
     </div>
-    <!--footer-->
-@include('admin.partials.footer')
-<!--//footer-->
+    <!-- End of Content Wrapper -->
+
 </div>
-<!--main js-->
+<!-- End of Page Wrapper -->
+
+<!-- Bootstrap core JavaScript-->
 @include('admin.partials.main-js')
-<!--//main js-->
 
 </body>
 </html>
