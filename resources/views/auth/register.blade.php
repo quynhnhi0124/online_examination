@@ -1,5 +1,9 @@
 @extends('layouts.app')
-
+<style>
+    footer{
+        bottom: 0;
+    }
+</style>
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
