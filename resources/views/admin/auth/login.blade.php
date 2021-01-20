@@ -18,7 +18,7 @@
                                 <form action="{{ route('admin.auth.loginAdmin') }}" method="post">
                                     @csrf
                                     <div class="form-group">
-                                        <input type="email" class="form-control form-control-user" id="email" name="email" aria-describedby="emailHelp" placeholder="Enter Email Address...">
+                                        <input type="email" class="form-control form-control-user" id="email" name="email" aria-describedby="emailHelp" placeholder="Enter Username...">
                                     </div>
                                     <div class="form-group">
                                         <input type="password" class="form-control form-control-user" id="password" name="password" placeholder="Password">
@@ -31,13 +31,19 @@
                                     </div>
                                     <input type="submit" class="btn btn-primary btn-user btn-block" value="{{ __('Login admin') }}">
                                     <hr>
+                                    <a href="index.html" class="btn btn-google btn-user btn-block">
+                                        <i class="fab fa-google fa-fw"></i> Login with Google
+                                    </a>
+                                    <a href="index.html" class="btn btn-github btn-user btn-block">
+                                        <i class="fab fa-github fa-fw"></i> Login with Github
+                                    </a>
                                 </form>
                                 <hr>
                                 <div class="text-center">
                                     <a class="small" href="forgot-password.html">Forgot Password?</a>
                                 </div>
                                 <div class="text-center">
-                                    <a class="small" href="{{ route('admin.register') }}">Create an Account!</a>
+                                   <a class="small" href="{{ route('admin.register') }}">Create an Account!</a>
                                 </div>
                             </div>
                         </div>

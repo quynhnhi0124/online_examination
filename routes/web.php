@@ -22,4 +22,9 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
     Route::get('/', 'AdminController@index')->name('dashboard');
     Route::get('/dashboard', 'AdminController@index')->name('dashboard');
+    Route::get('login', 'Auth\Admin\LoginController@login')->name('auth.login');
+    Route::post('login','Auth\Admin\LoginController@loginAdmin')->name('auth.loginAdmin');
+    Route::get('logout', 'Auth\Admin\LoginController@logout')->name('auth.logout');
+    Route::get('register', 'Auth\Admin\RegisterController@create')->name('register');
+    Route::post('register','Auth\Admin\RegisterController@store')->name('register.store');
 });

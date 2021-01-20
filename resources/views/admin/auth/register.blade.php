@@ -22,23 +22,20 @@
                                 <input type="email" class="form-control form-control-user" id="email" name="email"
                                        placeholder="Email Address">
                             </div>
-                            <div class="form-group row">
-                                <div class="col-sm-6 mb-3 mb-sm-0">
+                            <div class="form-group">
                                     <input type="password" name="password" class="form-control form-control-user"
                                            id="password"
                                            placeholder="Password">
-
-                                </div>
-                                <div class="col-sm-6">
-                                    <input type="password" name="password_confirmation" class="form-control form-control-user"
-                                           id="password_confirmation"
-                                           placeholder="Repeat Password">
-
-                                </div>
                             </div>
 
                             <input type="submit" class="btn btn-primary btn-user btn-block" value="Register account">
-
+                            <hr>
+                            <a href="index.html" class="btn btn-google btn-user btn-block">
+                                <i class="fab fa-google fa-fw"></i> Register with Google
+                            </a>
+                            <a href="index.html" class="btn btn-facebook btn-user btn-block">
+                                <i class="fab fa-facebook-f fa-fw"></i> Register with Facebook
+                            </a>
                             <hr>
                         </form>
                         <hr>
