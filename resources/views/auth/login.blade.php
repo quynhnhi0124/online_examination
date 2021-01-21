@@ -1,27 +1,32 @@
 @extends('layouts.app')
+<title>Đăng nhập</title>
 <style>
+    .login-form{
+        margin: 150px 190px;
+        padding: 2rem 2rem;
+    }
     footer{
         bottom: 0;
     }
 </style>
 @section('content')
 <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Login') }}</div>
+    <div class="row d-flex justify-content-center">
+        <div class=" ">
+            <div class="col-md-8 card login-form">
 
                 <div class="card-body">
+                    <h3 class="text-xs-center">{{ __('Login') }}</h3>
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
 
                         <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+                            <label for="username" class="col-md-4 col-form-label text-md-right">{{ __('username') }}</label>
 
                             <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                                <input id="username" type="text" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required autocomplete="username" autofocus>
 
-                                @error('email')
+                                @error('username')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>

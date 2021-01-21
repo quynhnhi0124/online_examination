@@ -6,24 +6,19 @@
     <meta name="description" content="Businnes, Portfolio, Corporate"> 
 	<meta name="Author" content="WebThemez"> 
     <title>Trang chủ</title>
-    <link rel="stylesheet" href="css/normalize.css">
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/font-awesome.min.css" />
-	<link rel="stylesheet" href="elegant_font/style.css" />
-    <link rel="stylesheet" href="css/magnific-popup.css">
-    <link rel="stylesheet" href="css/slider-pro.css">
-    <link rel="stylesheet" href="css/owl.carousel.css">
-    <link rel="stylesheet" href="css/owl.theme.css">
-    <link rel="stylesheet" href="css/owl.transitions.css">
-    <link rel="stylesheet" href="css/animate.css">
+    <link rel="stylesheet" href="{{ asset('css/normalize.css')}}">
+    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('css/font-awesome.min.css')}}" />
+	<link rel="stylesheet" href="{{ asset('elegant_font/style.css')}}" />
+    <link rel="stylesheet" href="{{ asset('css/magnific-popup.css')}}">
+    <link rel="stylesheet" href="{{ asset('css/slider-pro.css')}}">
+    <link rel="stylesheet" href="{{ asset('css/owl.carousel.css')}}">
+    <link rel="stylesheet" href="{{ asset('css/owl.theme.css')}}">
+    <link rel="stylesheet" href="{{ asset('css/owl.transitions.css')}}">
+    <link rel="stylesheet" href="{{ asset('css/animate.css')}}">
 	<!-- <link rel="stylesheet" href="elegant_font/style.css">  -->
-    <link rel="stylesheet" href="css/style.css"> 
+    <link rel="stylesheet" href="{{ asset('css/style.css')}}"> 
 
-    <!--[if lt IE 9]>
-        <script src="js/html5shiv.min.js"></script>
-        <script src="js/respond.min.js"></script>
-        <script type="text/javascript" src="js/selectivizr.js"></script>
-    <![endif]-->
 </head>
 
 <body>
@@ -59,16 +54,25 @@
                         </li> -->
                         @guest
                             <li>
-                                <a href="{{ route('login') }}">Đăng nhập</a>
+                                <a href="{{ route('auth.login') }}">Đăng nhập</a>
                             </li> 
                             @if (Route::has('register'))
                             <li>
-                                <a href="{{ route('register') }}">Đăng ký</a>
+                                <a href="{{ route('auth.register') }}">Đăng ký</a>
                             </li>
                             @endif
                         @else
-                            <li>
-                                <a href="{{ route('register') }}">Auth::user()->email</a>
+                            <li class="dropdown">
+                                <a href="#">{{Auth::user()->username}}</a>
+                                <div class="dropdown-content">
+                                    @if ( Auth::user()->role == 0 || Auth::user()->role == 1)                                    
+                                    <a href="{{route ('admin.user-manage.user-manage')}}">Quản lý người dùng</a>
+                                    @endif
+                                    <form action="{{ route('logout') }}" method="post">
+                                        @csrf
+                                        <button class="btn btn-link">Đăng xuất</button>
+                                    </form>
+                                </div>
                             </li>
                         @endguest
                     </ul> 

@@ -46,15 +46,15 @@ return [
             'provider' => 'users',
             'hash' => false,
         ],
-        'admin' => [
-            'driver' => 'session',
-            'provider' => 'admins',
-        ],
+        // 'admin' => [
+        //     'driver' => 'session',
+        //     'provider' => 'admins',
+        // ],
 
-        'admin-api' => [
-            'driver' => 'token',
-            'provider' => 'admins',
-        ],
+        // 'admin-api' => [
+        //     'driver' => 'token',
+        //     'provider' => 'admins',
+        // ],
     ],
 
     /*

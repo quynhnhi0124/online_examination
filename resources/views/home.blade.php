@@ -1,5 +1,12 @@
 @extends('layouts.app')
-
+<style>
+    footer{
+        bottom: 0;
+    }
+    nav{
+        margin-bottom: 150px;
+    }
+</style>
 @section('content')
 <div class="container">
     <div class="row justify-content-center">

@@ -21,11 +21,8 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->string('password');
             $table->string('mobile');
-            $table->datetime('lastlogin');
-            $table->bigInteger('role');
-            $table->string('provide');
-            $table->string('provide_id');
-            $table->timestamp('email_verified_at')->nullable();
+            $table->Integer('role')->default(2);
+            $table->Integer('status')->default(1);
             $table->rememberToken();
             $table->timestamps();
         });
