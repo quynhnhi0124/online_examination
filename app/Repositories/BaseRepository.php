@@ -3,6 +3,9 @@
 namespace App\Repositories;
 
 use App\Repositories\RepositoryInterface;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\Request;
+use Log;
 
 abstract class BaseRepository implements RepositoryInterface
 {
@@ -22,43 +25,55 @@ abstract class BaseRepository implements RepositoryInterface
         );
     }
 
-    public function getAll()
+    /**
+     * Lay dl trong db
+     */
+    public function get()
     {
         return $this->model->all();
+    }
+    
+    /**
+     * Phan trang
+     */
+    public function paginate(int $limit){
+        return $this->model->paginate($limit);
     }
 
     public function find($id)
     {
-        $result = $this->model->find($id);
+        $item = $this->model->find($id);
 
-        return $result;
+        return $item;
     }
+    
 
-    public function create($attributes = [])
+    public function create(array $input)
     {
-        return $this->model->create($attributes);
-    }
-
-    public function update($id, $attributes = [])
-    {
-        $result = $this->find($id);
-        if ($result) {
-            $result->update($attributes);
-            return $result;
+        try {
+            $item = $this->create($input);
+            dd($input);
+        } catch (\Exception $exception) {
+            Log::error('[Create]:', [$exception->getMessage()]);
+            $item = null;       
         }
+        return $item;
+    }
 
-        return false;
+    public function update($id, array $input)
+    {
+        $item = $this->find($id);
+        try {
+            $item->update($input);           
+        } catch (\Exception $exception) {
+            Log::error('[Update function]:', [$exception->getMessage()]);
+            $item = null;
+        }
+        return $item;
     }
 
     public function delete($id)
     {
-        $result = $this->find($id);
-        if ($result) {
-            $result->delete();
-
-            return true;
-        }
-
-        return false;
+        return $this->model->destroy($id);
     }
 }

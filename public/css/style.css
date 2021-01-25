@@ -591,7 +591,6 @@ section#services {
 .navbar-brand {
     float: left;
     height: 50px;
-    padding: 0px 15px;
     font-size: 18px;
     line-height: 20px;
 }
@@ -621,6 +620,12 @@ header.page-header .main-menu{
 }
 .navbar-brand img {
 	margin-top: 7px;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	object-fit: contain;
+	object-position: 0 0;
+
 }
 .main-menu .navbar-nav{
     float: right;

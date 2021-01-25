@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\User;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
-use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Validator;
 use App\Http\Requests\RegisterRequest;
-class RegisterController extends Controller
+use App\Repositories\Repository;
+class RegisterController extends Controller 
 {
     /*
     |--------------------------------------------------------------------------
@@ -22,7 +22,7 @@ class RegisterController extends Controller
     |
     */
 
-    use RegistersUsers;
+    // use RegistersUsers;
 
     /**
      * Where to redirect users after registration.
@@ -31,17 +31,20 @@ class RegisterController extends Controller
      */
     protected $redirectTo = RouteServiceProvider::HOME;
 
+    private $repository;
+
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(Repository $repository)
     {
         $this->middleware('guest');
+        $this->repository = $repository;
     }
 
-    public function index()
+    public function get()
     {
         return view('auth.register');
     }
@@ -52,17 +55,18 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \App\User
      */
-    protected function register(RegisterRequest $data)
+    protected function create(RegisterRequest $request)
     {
-        $validated = $data -> validated();
-        $user = User::create([
-            'firstname' => $data['firstname'],
-            'lastname' => $data['lastname'],
-            'username' => $data['username'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-            'mobile' => $data['mobile'],
+        $validated = $request -> validated();
+        $input = $request->only([
+            'firstname',
+            'lastname',
+            'username',
+            'email',
+            'password',
+            'mobile',
         ]);
-        return view('welcome');
+        Repository::getUser()->create($input);
+        return redirect()->route('welcome');
     }
 }

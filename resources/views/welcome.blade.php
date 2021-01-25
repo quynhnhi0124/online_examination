@@ -9,7 +9,7 @@
             <div class="sp-slide main-slides">
                 <div class="img-overlay"></div>
 
-                <img class="sp-image" src="#" alt="Slider 1"/>
+                <img class="sp-image" src="{{asset ('/img/slider-1.jpg')}}" alt="Slider 1"/>
                 <div class="caption">
 					<h1 class="sp-layer slider-text-big"
 					data-position="center" data-show-transition="left" data-hide-transition="right" data-show-delay="1500" data-hide-delay="200">
@@ -26,7 +26,7 @@
             <!-- Slides -->
             <div class="sp-slide main-slides">
             <div class="img-overlay"></div>
-                <img class="sp-image" src="#" alt="Slider 2"/>
+                <img class="sp-image" src="{{asset ('/img/slider-2.jpg')}}" alt="Slider 2"/>
                 <div class="caption">
                 <h1 class="sp-layer slider-text-big"
                 data-position="center" data-show-transition="left" data-hide-transition="right" data-show-delay="1500" data-hide-delay="200">
@@ -45,7 +45,7 @@
             <div class="sp-slide main-slides">
                 <div class="img-overlay"></div>
 
-                <img class="sp-image" src="#" alt="Slider 3"/>
+                <img class="sp-image" src="{{asset ('/img/slider-3.jpg')}}" alt="Slider 3"/>
 				<div class="caption">
                 <h1 class="sp-layer slider-text-big"
                 data-position="center" data-show-transition="left" data-hide-transition="right" data-show-delay="1500" data-hide-delay="200">
@@ -75,7 +75,7 @@
                 <!-- Section Header End -->
 
                 <div class="col-md-6 col-sm-6 col-xs-12 custom-sec-img wow fadeInDown">
-                    <img src="#" alt="Custom Image">
+                    <img src="{{asset ('/img/slider-1.jpg')}}" alt="Custom Image">
                 </div>
 
                 <div class="col-md-6 col-sm-6 col-xs-12 customized-text wow fadeInDown black-ed">
@@ -119,7 +119,7 @@
 		            <div class="row">
                         <div class="col-md-4 col-sm-4 col-xs-12 text-xs-center wow fadeInDown" data-wow-delay=".2s">
                             <div class="service-box">
-                                <img src="#" alt="Custom Image">
+                                <img src="{{asset ('/img/slider-1.jpg')}}" alt="Custom Image">
                                 <div class="icon">
                                     <i class="icon_cone"></i> <h3>Toán</h3>
                                 </div> 
@@ -129,7 +129,7 @@
                         </div>
                         <div class="col-md-4 col-sm-4 col-xs-12 text-xs-center wow fadeInDown" data-wow-delay=".2s">
                             <div class="service-box">
-                                <img src="#" alt="Custom Image">
+                                <img src="{{asset ('/img/slider-2.jpg')}}" alt="Custom Image">
                                 <div class="icon">
                                     <i class="icon_mug"></i><h3>Lý</h3>
                                 </div>
@@ -139,7 +139,7 @@
                         </div>
                         <div class="col-md-4 col-sm-4 col-xs-12 text-xs-center wow fadeInDown" data-wow-delay=".2s">
                             <div class="service-box">
-                                <img src="#" alt="Custom Image">
+                                <img src="{{asset ('/img/slider-3.jpg')}}" alt="Custom Image">
                                 <div class="icon">
                                     <i class="icon_currency"></i><h3>Hóa</h3>
                                 </div>

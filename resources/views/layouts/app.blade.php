@@ -34,7 +34,7 @@
                 <button class="navbar-toggler hidden-md-up pull-right" type="button" data-toggle="collapse" data-target="#collapsingNavbar">
                     ☰
                 </button> 
-                <a class="navbar-brand page-scroll" href="{{route ('welcome') }}"><img class="logo" id="logo" src="#" alt="logo"></a>
+                <a class="navbar-brand page-scroll" href="{{route ('welcome') }}"><img class="logo" id="logo" src="{{asset ('/img/logo.png')}}" alt="logo"></a>
                 <div class="collapse navbar-toggleable-sm" id="collapsingNavbar">
                     <ul class="nav navbar-nav">
                         <li class="active">

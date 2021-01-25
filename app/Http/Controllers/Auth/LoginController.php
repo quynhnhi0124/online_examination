@@ -30,7 +30,6 @@ class LoginController extends Controller
      * @var string
      */
     protected $redirectTo = RouteServiceProvider::HOME;
-
     /**
      * Create a new controller instance.
      *
@@ -41,26 +40,25 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
-    public function index()
+    public function get()
     {
         return view('auth.login');
     }
 
-    public function login(LoginRequest $data){
-        $validated = $data -> validated();
-        $login = [
-            'username' => $data -> username,
-            'password' => $data -> password,
-        ];
-        if(Auth::attempt($login)){
-            return redirect()->to('/home');
-        }else{
-            dd('wrong');
+    public function login(LoginRequest $request)
+    {    
+            $username = $request->get('username');
+            $password = $request->get('password');
+        if (Auth::attempt(['username' => $username, 'password' => $password,'status'=>1])){
+            return redirect()->route('admin.user-manage.user-manage');
+        } else {
+            dd('user got banned');
         }
     }
 
-    public function logout(){
+    public function logout()
+    {
         Auth::logout();
-        return redirect()->to('/');
+        return redirect()->route('welcome');
     }
 }
