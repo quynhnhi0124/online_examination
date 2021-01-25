@@ -14,20 +14,6 @@
             <div class="card-body">
                 <div class="table-responsive">
                     <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
-                        <!-- <div class="row">
-                            <div class="col-sm-12 col-md-6">
-                                <div class="dataTables_length" id="dataTable_length">
-                                    <label>Hiển thị: 
-                                        <select name="dataTable_length" aria-controls="dataTable" class="custom-select custom-select-sm form-control form-control-sm">
-                                            <option value="10">10</option>
-                                            <option value="25">25</option>
-                                            <option value="50">50</option>
-                                            <option value="100">100</option>
-                                        </select> 
-                                    </label>
-                                </div>
-                            </div>
-                        </div> -->
                         <div class="row">
                             <div class="col-sm-12">
                                 <table class="table table-bordered dataTable" id="dataTable" width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
@@ -49,11 +35,7 @@
                                             <td scope="row">{{++$key}}</td>
                                             <td>{{$user->username}}</td>
                                             <td>{{$user->email}}</td>
-                                            <!-- <td>
-                                                @foreach($role as $key=>$r)
-                                                    <input type="radio" name="role" id="role" value="{{$user->role}}" {{ ($user->role == $r->role_num) ? 'checked' : '' }}>&nbsp {{$r->role}}
-                                                @endforeach
-                                            </td> -->
+                                            
                                             <td>
                                                 <input type="radio" name="role" id="role" value="0" {{ ($user->role == 0) ? 'checked' : '' }}>&nbsp Superadmin
                                                 <input type="radio" name="role" id="role" value="1" {{ ($user->role == 1) ? 'checked' : '' }}>&nbsp Admin

@@ -53,13 +53,11 @@
             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="{{route('welcome')}}">
-                        <!-- <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i> -->
                         Trang chủ
                     </a>   
                 <form action="{{route ('logout')}}" method="post">
                     @csrf
                     <button class="dropdown-item btn-link">
-                        <!-- <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i> -->
                         Logout
                     </button>              
                 </form>

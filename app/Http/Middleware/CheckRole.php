@@ -16,7 +16,7 @@ class CheckRole
      */
     public function handle($request, Closure $next)
     {
-        if(Auth::check()){
+        if(Auth::check() && auth()->user()->status == 1){
             if(auth()->user()->role == 0 || auth()->user()->role == 1){
                 return $next($request);
             }

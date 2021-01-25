@@ -24,10 +24,7 @@ class AdminController extends Controller
     public function viewUser(){
         $pagination = Repository::getUser()->paginate(2);
         $users = Repository::getUser()->get();
-        $role = DB::table('roles')
-                            ->join('users','roles.role_num','=','users.role')
-                            ->select('roles.role','roles.role_num')->distinct('roles.role')->get();
-        return view('auth.admin.user-manage', ['users'=>$users,'role'=>$role, 'pagination'=>$pagination]);
+        return view('auth.admin.user-manage', ['users'=>$users, 'pagination'=>$pagination]);
     }
 
     public function editUser($id, Request $request){

@@ -32,15 +32,6 @@ Route::group(['middleware'=>'auth'], function(){ //route cho ng dung da dang nha
             Route::post('/{id}/edit-user','Auth\Admin\AdminController@editUser')->name('edit-user');
     
         });
-    
-        // Route::get('subject/', 'Admin\SubjectController@index')->name('subject');
-        // Route::get('subject/create', 'Admin\SubjectController@create')->name('subject.create');
-        // Route::get('subject/{id}/edit', 'Admin\SubjectController@edit')->where('id', '[0-9]+')->name('subject.edit');
-        // Route::get('subject/{id}/delete', 'Admin\SubjectController@delete')->where('id', '[0-9]+')->name('subject.delete');
-    
-        // Route::post('subject', 'Admin\SubjectController@store')->name('subject.store');
-        // Route::post('subject/{id}', 'Admin\SubjectController@update')->where('id', '[0-9]+')->name('subject.update');
-        // Route::post('subject/{id}/delete', 'Admin\SubjectController@destroy')->where('id', '[0-9]+')->name('subject.destroy');
     });
 });
 

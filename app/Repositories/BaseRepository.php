@@ -42,9 +42,7 @@ abstract class BaseRepository implements RepositoryInterface
 
     public function find($id)
     {
-        $item = $this->model->find($id);
-
-        return $item;
+        return $this->model->find($id);
     }
     
 
@@ -52,7 +50,6 @@ abstract class BaseRepository implements RepositoryInterface
     {
         try {
             $item = $this->create($input);
-            dd($input);
         } catch (\Exception $exception) {
             Log::error('[Create]:', [$exception->getMessage()]);
             $item = null;       
