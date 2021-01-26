@@ -15,27 +15,26 @@ Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
 
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
-
-Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
-    Route::get('/', 'AdminController@index')->name('dashboard');
-    Route::get('/dashboard', 'AdminController@index')->name('dashboard');
-
-    Route::get('login', 'Auth\Admin\LoginController@login')->name('auth.login');
-    Route::post('login','Auth\Admin\LoginController@loginAdmin')->name('auth.loginAdmin');
-    Route::get('logout', 'Auth\Admin\LoginController@logout')->name('auth.logout');
-    Route::get('register', 'Auth\Admin\RegisterController@create')->name('register');
-    Route::post('register','Auth\Admin\RegisterController@store')->name('register.store');
-
-    Route::get('subject/', 'Admin\SubjectController@index')->name('subject');
-    Route::get('subject/create', 'Admin\SubjectController@create')->name('subject.create');
-    Route::get('subject/{id}/edit', 'Admin\SubjectController@edit')->where('id', '[0-9]+')->name('subject.edit');
-    Route::get('subject/{id}/delete', 'Admin\SubjectController@delete')->where('id', '[0-9]+')->name('subject.delete');
-
-    Route::post('subject', 'Admin\SubjectController@store')->name('subject.store');
-    Route::post('subject/{id}', 'Admin\SubjectController@update')->where('id', '[0-9]+')->name('subject.update');
-    Route::post('subject/{id}/delete', 'Admin\SubjectController@destroy')->where('id', '[0-9]+')->name('subject.destroy');
+Route::group(['namespace'=>'Auth'], function() {
+    Route::get('/login', 'LoginController@get')->name('auth.login');
+    Route::post('/login','LoginController@login')->name('login');
+    Route::get('/register', 'RegisterController@get')->name('auth.register');
+    Route::post('/register','RegisterController@create')->name('register');
+    Route::post('/logout', 'LoginController@logout')->name('logout');
 });
 
+Route::group(['middleware'=>'auth'], function(){ //route cho ng dung da dang nhap
+    Route::group(['namespace'=>'User'], function(){
+        Route::get('/home', 'UserController@index')->name('home'); //sau khi dang nhap nguoi dung dc chuyen den trang nay
+        Route::get('/{id}/edit-info','UserManageController@viewEdit')->name('view-edit'); //trang sua thong tin ca nhan
+        Route::post('/{id}/edit-info','UserManageController@editInfo')->name('edit-info'); //sua thong tin ca nhan
+    });
+
+    Route::group(['prefix' => 'admin', 'as' => 'admin.','middleware'=>'is_admin','namespace'=>'Admin'], function () { //ng dung da dang nhap, role = superadmin||admin
+        Route::group(['prefix' => '/user-manage', 'as' => 'user-manage.'],function(){
+            Route::get('/','AdminController@viewUser')->name('user-manage'); //sau khi dang nhap cac admin va superadmi dc chuyen den trang nay
+            Route::post('/{id}/edit-user','AdminController@editUser')->name('edit-user');
+    
+        });
+    });
+});

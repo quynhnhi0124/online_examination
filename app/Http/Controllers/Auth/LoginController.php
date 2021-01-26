@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use App\Http\Requests\LoginRequest;
+use Auth;
+use App\User;
 
 class LoginController extends Controller
 {
@@ -21,20 +24,25 @@ class LoginController extends Controller
 
     use AuthenticatesUsers;
 
-    /**
-     * Where to redirect users after login.
-     *
-     * @var string
-     */
-    protected $redirectTo = RouteServiceProvider::HOME;
-
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
+    public function get()
     {
-        $this->middleware('guest')->except('logout');
+        return view('auth.login');
+    }
+
+    public function login(LoginRequest $request)
+    {    
+        $username = $request->get('username');
+        $password = $request->get('password');
+        if (Auth::attempt(['username' => $username, 'password' => $password,'status'=>1])){
+            return redirect()->route('admin.user-manage.user-manage');
+        } else {
+            dd('user got banned');
+        }
+    }
+
+    public function logout()
+    {
+        Auth::logout();
+        return redirect()->route('welcome');
     }
 }
