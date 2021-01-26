@@ -38,7 +38,7 @@ class RegisterController extends Controller
      */
     public function __construct(Repository $repository)
     {
-        $this->middleware('guest');
+        // $this->middleware('guest');
         $this->repository = $repository;
     }
 
@@ -64,7 +64,9 @@ class RegisterController extends Controller
             'password',
             'mobile',
         ]);
+        $iput->get('password') =  Hash::make($input->get('password'));
+        dd($input);
         Repository::getUser()->create($input);
-        return redirect()->route('welcome');
+        return view('welcome');
     }
 }

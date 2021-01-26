@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers\User;
 
 use \App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -9,13 +9,6 @@ use App\Repositories\Repository;
 
 class UserManageController extends Controller
 {
-    private $repository;
-
-    public function __construct(Repository $repository) 
-    {
-        $this->repository = $repository;
-    }
-
     public function viewEdit($id)
     {
         $user = Repository::getUser()->find($id);
