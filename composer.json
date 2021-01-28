@@ -10,9 +10,11 @@
     "require": {
         "php": "^7.2.5|^8.0",
         "fideloper/proxy": "^4.4",
+        "guzzlehttp/guzzle": "^7.2",
         "laravel/framework": "^6.20",
         "laravel/tinker": "^2.5",
-        "laravel/ui": "^1.2"
+        "laravel/ui": "^1.2",
+        "wildbit/swiftmailer-postmark": "^3.3"
     },
     "require-dev": {
         "facade/ignition": "^1.16.4",

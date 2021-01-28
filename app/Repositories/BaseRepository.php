@@ -73,4 +73,5 @@ abstract class BaseRepository implements RepositoryInterface
     {
         return $this->model->destroy($id);
     }
+    
 }
