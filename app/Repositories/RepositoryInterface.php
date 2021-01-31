@@ -19,4 +19,6 @@ interface RepositoryInterface
     public function update($id, array $input);
 
     public function delete($id);
+
+    public function findBy($attribubte,$value);
 }

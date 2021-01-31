@@ -11,15 +11,15 @@ class ForgotPassword extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $password;
+    public $random_token;
     /**
      * Create a new message instance.
      *
      * @return void
-     */
-    public function __construct($password)
+     */ 
+    public function __construct($random_token)
     {
-        $this->password = $password;
+        $this->random_token = $random_token;
     }
 
     /**
@@ -29,8 +29,10 @@ class ForgotPassword extends Mailable
      */
     public function build()
     {
+        $url = url('reset-password/token='.$this->random_token);
         return $this->from('quynhnhi.jvb@gmail.com')
-                    ->view('email.forgot-password')
-                    ->with(['password',$this->password]);
+                    ->markdown('email.forgot-password', [
+                        'url'=>$url
+                    ]);
     }
 }

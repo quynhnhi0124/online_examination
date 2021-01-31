@@ -23,8 +23,8 @@ Route::group(['namespace'=>'Auth'], function() {
     Route::post('/logout', 'LoginController@logout')->name('logout');
     Route::get('/forgot-password', 'ForgotPasswordController@index')->name('forgot-password');
     Route::post('/get-new-password', 'ForgotPasswordController@getNewPassword')->name('get-new-password');
-    Route::get('{id}/confirm-password', 'ForgotPasswordController@getReset')->name('get-reset-password');
-    Route::post('{id}/reset-password', 'ForgotPasswordController@resetPassword')->name('reset-password');
+    Route::get('/reset-password/token={token}', 'ForgotPasswordController@getReset')->name('get-reset-password');
+    Route::post('//{token}/password-is-reset', 'ForgotPasswordController@resetPassword')->name('reset-password');
 });
 
 Route::group(['middleware'=>'auth'], function(){ //route cho ng dung da dang nhap

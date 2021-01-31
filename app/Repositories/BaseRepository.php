@@ -73,5 +73,9 @@ abstract class BaseRepository implements RepositoryInterface
     {
         return $this->model->destroy($id);
     }
+
+    public function findBy($attribute, $value){
+        return $this->model->where($attribute,'=',$value);
+    }
     
 }

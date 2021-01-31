@@ -39,15 +39,18 @@
                             <div class="col-lg-6">
                                 <div class="p-5">
                                     <div class="text-center">
-                                        <h1 class="h4 text-gray-900 mb-2">Quên mật khẩu</h1>
+                                        <h1 class="h4 text-gray-900 mb-2">Quên mật khẩu</h1> 
                                         <p class="mb-4">Nhập vào email đăng ký tài khoản để nhận mật khẩu mới: </p>
                                     </div>
+                                    @if(session('alert'))
+                                        <section class='alert alert-success'>{{session('alert')}}</section>
+                                    @endif 
                                     <form class="user" action="{{route('get-new-password')}}"method="POST">
                                     @csrf
                                         <div class="form-group">
                                             <input type="email" name="email" class="form-control form-control-user"
                                                 id="exampleInputEmail" aria-describedby="emailHelp"
-                                                placeholder="Nhập địa chỉ mail...">
+                                                placeholder="Nhập địa chỉ mail..." required>
                                         </div>
                                         <button type="submit" class="btn btn-primary btn-user btn-block">
                                             Đặt lại mật khẩu
