@@ -7,11 +7,11 @@ use Illuminate\Support\Facades\Hash;
 
 class StringHelper
 {
-    public static function hashInput($input){
+    public static function hash($input){
         return Hash::make($input);
     }
 
-    public static function createToken(){
+    public static function generateUnique(){
         return (string) Str::uuid();
     }
 }
