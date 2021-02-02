@@ -4,10 +4,10 @@ namespace App\Http\Controllers\Auth;
 use DB;
 use App\User;
 use Carbon\Carbon;
-use Illuminate\Support\Str;
 use App\ResetPasswordModel;
 use Illuminate\Http\Request;
 use App\Mail\ForgotPassword;
+use App\Helpers\StringHelper;
 use App\Repositories\Repository;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Controllers\Controller;
@@ -37,12 +37,13 @@ class ForgotPasswordController extends Controller
         $email = $request->email;
         $username = Repository::getUser()->findBy('email',$email)->first();
         if($username){
-            $random_token = (string) Str::uuid();
-            $item = ResetPasswordModel::create([
-                'email' => $email,
-                'token' => $random_token,
+            $request['token'] = StringHelper::createToken();
+            $item = $request->only([
+                'email',
+                'token',
             ]);
-            Mail::to($email)->send(new ForgotPassword($random_token));
+            Repository::getPassword()->create($item);
+            Mail::to($email)->send(new ForgotPassword($request['token']));
             $alert = "Một đường link thay đổi mật khẩu đã được gửi đến email của bạn!";
             return redirect()->back()->with('alert',$alert);
         }

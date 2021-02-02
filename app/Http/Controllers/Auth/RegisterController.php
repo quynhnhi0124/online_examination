@@ -45,7 +45,6 @@ class RegisterController extends Controller
      */
     protected function create(RegisterRequest $request)
     {
-        $validated = $request->validated();
         $input = $request->only([
             'firstname',
             'lastname',
@@ -54,7 +53,7 @@ class RegisterController extends Controller
             'password',
             'mobile',
         ]);
-        $user = User::create($input);
+        Repository::getUser()->create($input);
         Mail::to($input['email'])->send(new UserRegistered($input['username'],$input['email']));
         return view('welcome');
     }

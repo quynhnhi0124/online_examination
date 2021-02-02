@@ -49,7 +49,8 @@ abstract class BaseRepository implements RepositoryInterface
     public function create(array $input)
     {
         try {
-            $item = $this->create($input);
+            $item = new $this->model($input);
+            $item->save();
         } catch (\Exception $exception) {
             Log::error('[Create]:', [$exception->getMessage()]);
             $item = null;       

@@ -14,7 +14,7 @@ class AdminController extends Controller
 {
     public function viewUser()
     {
-        $users = Repository::getUser()->paginate(2);
+        $users = Repository::getUser()->paginate(10);
         return view('admin.user-manage', ['users'=>$users]);
     }
 

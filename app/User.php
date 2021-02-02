@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Helpers\StringHelper;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -45,6 +46,6 @@ class User extends Authenticatable
      */
     public function setPasswordAttribute($password)
     {
-        $this->attributes['password'] = hashInput($password);
+        $this->attributes['password'] = StringHelper::hashInput($password);
     }
 }
