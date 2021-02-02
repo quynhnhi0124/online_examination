@@ -9,6 +9,9 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\RegisterRequest;
 use App\Repositories\Repository;
+use App\Mail\UserRegistered;
+use Illuminate\Support\Facades\Mail;
+
 class RegisterController extends Controller 
 {
     /*
@@ -29,19 +32,6 @@ class RegisterController extends Controller
      */
     protected $redirectTo = RouteServiceProvider::HOME;
 
-    private $repository;
-
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct(Repository $repository)
-    {
-        // $this->middleware('guest');
-        $this->repository = $repository;
-    }
-
     public function get()
     {
         return view('auth.register');
@@ -55,7 +45,6 @@ class RegisterController extends Controller
      */
     protected function create(RegisterRequest $request)
     {
-        $validated = $request -> validated();
         $input = $request->only([
             'firstname',
             'lastname',
@@ -64,9 +53,8 @@ class RegisterController extends Controller
             'password',
             'mobile',
         ]);
-        $iput->get('password') =  Hash::make($input->get('password'));
-        dd($input);
         Repository::getUser()->create($input);
+        Mail::to($input['email'])->send(new UserRegistered($input['username'],$input['email']));
         return view('welcome');
     }
 }

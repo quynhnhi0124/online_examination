@@ -19,8 +19,12 @@ Route::group(['namespace'=>'Auth'], function() {
     Route::get('/login', 'LoginController@get')->name('auth.login');
     Route::post('/login','LoginController@login')->name('login');
     Route::get('/register', 'RegisterController@get')->name('auth.register');
-    Route::post('/register','RegisterController@create')->name('register');
+    Route::post('/register', 'RegisterController@create')->name('register');
     Route::post('/logout', 'LoginController@logout')->name('logout');
+    Route::get('/forgot-password', 'ForgotPasswordController@index')->name('forgot-password');
+    Route::post('/get-new-password', 'ForgotPasswordController@getNewPassword')->name('get-new-password');
+    Route::get('/reset-password/token={token}', 'ForgotPasswordController@getReset')->name('get-reset-password');
+    Route::post('//{token}/password-is-reset', 'ForgotPasswordController@resetPassword')->name('reset-password');
 });
 
 Route::group(['middleware'=>'auth'], function(){ //route cho ng dung da dang nhap
@@ -32,7 +36,7 @@ Route::group(['middleware'=>'auth'], function(){ //route cho ng dung da dang nha
 
     Route::group(['prefix' => 'admin', 'as' => 'admin.','middleware'=>'is_admin','namespace'=>'Admin'], function () { //ng dung da dang nhap, role = superadmin||admin
         Route::group(['prefix' => '/user-manage', 'as' => 'user-manage.'],function(){
-            Route::get('/','AdminController@viewUser')->name('user-manage'); //sau khi dang nhap cac admin va superadmi dc chuyen den trang nay
+            Route::get('/','AdminController@viewUser')->name('user-manage'); //sau khi dang nhap cac admin va superadmin dc chuyen den trang nay
             Route::post('/{id}/edit-user','AdminController@editUser')->name('edit-user');
     
         });

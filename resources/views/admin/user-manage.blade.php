@@ -56,7 +56,7 @@
                             </div>
                         </div>
                         <div class="row justify-content-center">
-                            {{ $pagination->links() }}
+                            {{ $users->links() }}
                         </div>
                     </div>
                 </div>

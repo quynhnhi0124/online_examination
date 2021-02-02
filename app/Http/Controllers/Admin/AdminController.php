@@ -14,9 +14,8 @@ class AdminController extends Controller
 {
     public function viewUser()
     {
-        $pagination = Repository::getUser()->paginate(2);
-        $users = Repository::getUser()->get();
-        return view('auth.admin.user-manage', ['users'=>$users, 'pagination'=>$pagination]);
+        $users = Repository::getUser()->paginate(10);
+        return view('admin.user-manage', ['users'=>$users]);
     }
 
     public function editUser($id, Request $request)
@@ -26,6 +25,6 @@ class AdminController extends Controller
             'status',
         ]);
         Repository::getUser()->update($id, $input);
-        return redirect()->route('admin.user-manage.user-manage');
+        return redirect()->route('user-manage.user-manage');
     }
 }

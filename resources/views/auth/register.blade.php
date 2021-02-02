@@ -2,18 +2,17 @@
 <title>Đăng ký</title>
 <style>
     .register-form{
-        margin: 150px 0;
+        margin: 50px 80px;
         padding: 2rem;
-        height: 100%;
     }
     footer{
-        bottom: 0;
+        display: None !important;
     }
 </style>
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        
             <div class="card register-form">
 
                 <div class="card-body">
@@ -93,8 +92,8 @@
                             </div>
                         </div>
 
-                        <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
+                        <div class="form-group row mb-0 text-xs-center">
+                            <div class="col-md-6 offset-md-4 ">
                                 <button type="submit" class="btn btn-primary">
                                     {{ __('Đăng ký tài khoản') }}
                                 </button>
@@ -104,6 +103,6 @@
                 </div>
             </div>
         </div>
-    </div>
+    
 </div>
 @endsection

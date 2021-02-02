@@ -2,11 +2,12 @@
 
 namespace App;
 
+use App\Helpers\StringHelper;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Hash;
-// use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Database\Eloquent\Model;
 
 class User extends Authenticatable
 {
@@ -40,7 +41,11 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function setPassword($password){
-        $this->attributes['password'] = Hash::make($password);
+    /**
+     * Mutator function
+     */
+    public function setPasswordAttribute($password)
+    {
+        $this->attributes['password'] = StringHelper::hash($password);
     }
 }
