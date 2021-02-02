@@ -38,7 +38,6 @@ class ForgotPasswordController extends Controller
         $username = Repository::getUser()->findBy('email',$email)->first();
         if($username){
             $random_token = (string) Str::uuid();
-            // Repository::getPassword()->create($item);
             $item = ResetPasswordModel::create([
                 'email' => $email,
                 'token' => $random_token,
