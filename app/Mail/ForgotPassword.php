@@ -30,8 +30,7 @@ class ForgotPassword extends Mailable
     public function build()
     {
         $url = url('reset-password/token='.$this->random_token);
-        return $this->from('quynhnhi.jvb@gmail.com')
-                    ->markdown('email.forgot-password', [
+        return $this->markdown('email.forgot-password', [
                         'url'=>$url
                     ]);
     }

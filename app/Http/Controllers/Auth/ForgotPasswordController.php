@@ -76,7 +76,6 @@ class ForgotPasswordController extends Controller
     {
         $data = Repository::getPassword()->findBy('token',$token)->first();
         $user = Repository::getUser()->findBy('email',$data->email)->first();
-        $request['password']  = Hash::make($request['password']);
         $input = $request->only([
             'password'
         ]);

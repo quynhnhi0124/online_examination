@@ -32,8 +32,7 @@ class UserRegistered extends Mailable
      */
     public function build()
     {
-        return $this->from('quynhnhi.jvb@gmail.com')
-                    ->markdown('email.user-registered')
+        return $this->markdown('email.user-registered')
                     ->with([
                         'username'=>$this->username,
                         'email'=>$this->email]);

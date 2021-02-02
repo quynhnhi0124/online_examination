@@ -46,7 +46,6 @@ class RegisterController extends Controller
     protected function create(RegisterRequest $request)
     {
         $validated = $request->validated();
-        $request['password']  = Hash::make($request['password']);
         $input = $request->only([
             'firstname',
             'lastname',
