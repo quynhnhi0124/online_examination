@@ -45,9 +45,7 @@
                                                 <input type="radio" name="status" id="status" value="1" {{ ($user->status == 1) ? 'checked' : '' }}>&nbsp Kích hoạt
                                                 <input type="radio" name="status" id="status" value="0" {{ ($user->status == 0) ? 'checked' : '' }}>&nbsp Vô hiệu hóa
                                             </td>
-                                            <td><button class="btn btn-primary" type="submit">Thay đổi</button>
-                                            <a href=""><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-                                            </td>
+                                            <td><button class="btn btn-primary" type="submit">Thay đổi</button></td>
                                         </tr>
                                         </form>
                                         @endforeach

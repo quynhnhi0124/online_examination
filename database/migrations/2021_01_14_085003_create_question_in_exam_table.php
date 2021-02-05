@@ -15,8 +15,8 @@ class CreateQuestionInExamTable extends Migration
     {
         Schema::create('question_in_exam', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('id_exam');
-            $table->bigInteger('id_question');
+            $table->bigInteger('exam_id');
+            $table->bigInteger('question_id');
             $table->timestamps();
         });
     }

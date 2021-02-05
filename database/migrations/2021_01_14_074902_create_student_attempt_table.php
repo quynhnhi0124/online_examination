@@ -15,8 +15,8 @@ class CreateStudentAttemptTable extends Migration
     {
         Schema::create('student_attempt', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('id_student');
-            $table->bigInteger('id_exam');
+            $table->bigInteger('student_id');
+            $table->bigInteger('exam_id');
             $table->datetime('start_time');
             $table->datetime('finish_time');
             $table->float('score');

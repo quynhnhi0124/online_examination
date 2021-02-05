@@ -78,5 +78,15 @@ abstract class BaseRepository implements RepositoryInterface
     public function findBy($attribute, $value){
         return $this->model->where($attribute,'=',$value);
     }
+
+    public function join($table, $first, $second, $type = 'inner')
+    {
+        return $this->model->join($table,$first,'=',$second)->get();
+    }
+
+    public function joinWhere($table, $first, $second, $attribute,$value)
+    {
+        return $this->model->join($table,$first,'=',$second)->where($attribute,'=',$value)->get();
+    }
     
 }

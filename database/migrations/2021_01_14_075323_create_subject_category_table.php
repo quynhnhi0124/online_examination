@@ -15,7 +15,7 @@ class CreateSubjectCategoryTable extends Migration
     {
         Schema::create('subject_category', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('id_subject');
+            $table->bigInteger('subject_id');
             $table->string('subject_category');
             $table->timestamps();
         });

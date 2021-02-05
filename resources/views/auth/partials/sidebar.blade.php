@@ -33,9 +33,6 @@
 <hr class="sidebar-divider">
 
 <!-- Heading -->
-<!-- <div class="sidebar-heading">
-  Interface
-</div> -->
 
 <!-- Nav Item - Thay doi thong tin ca nhan-->
 <li class="nav-item">
@@ -54,10 +51,16 @@
   <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
     <div class="bg-white py-2 collapse-inner rounded">
       <h6 class="collapse-header">Các môn thi:</h6>
-      <a class="collapse-item" href="utilities-color.html">Colors</a>
-      <a class="collapse-item" href="utilities-border.html">Borders</a>
-      <a class="collapse-item" href="utilities-animation.html">Animations</a>
-      <a class="collapse-item" href="utilities-other.html">Other</a>
+      @foreach($subject as $key=>$s)
+      <a class="collapse-item" href="{{route('admin.subject.index-subject',$s->id)}}">{{$s->subject}}</a>
+      @endforeach
+      <form action="{{route('admin.subject.create-subject')}}" method="post">
+        @csrf
+        <div class="form-group add-subject">
+          <input type="text" class="form-control" name="subject" placeholder="Thêm môn thi..">
+          <button class="btn add-btn btn-link"><i class="fa fa-plus" aria-hidden="true"></i></button>
+        </div>
+      </form>
     </div>
   </div>
 </li>

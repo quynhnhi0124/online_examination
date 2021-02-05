@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Repositories\Repository;
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -13,8 +15,12 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind(\App\Repositories\User\UserRepositoryInterface::class);
         $this->app->bind(\App\Repositories\User\UserRepository::class);
+        $this->app->bind(\App\Repositories\Auth\PasswordRepository::class);
+        $this->app->bind(\App\Repositories\Subject\SubjectRepository::class);
+        $this->app->bind(\App\Repositories\User\UserRepositoryInterface::class);
+        $this->app->bind(\App\Repositories\Auth\PasswordRepositoryInterface::class);
+        $this->app->bind(\App\Repositories\Subject\SubjectRepositoryInterface::class);
     }
 
     /**
@@ -24,6 +30,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        $subject = Repository::getSubject()->get();
+        View::share('subject',$subject);
     }
 }

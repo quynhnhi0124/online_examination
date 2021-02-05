@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateQuestionsTable extends Migration
+class Questions extends Migration
 {
     /**
      * Run the migrations.
@@ -15,13 +15,14 @@ class CreateQuestionsTable extends Migration
     {
         Schema::create('questions', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('id_subject');
-            $table->bigInteger('id_category');
-            $table->string('images');
+            $table->bigInteger('subject_id');
+            $table->bigInteger('category_id');
             $table->string('option_a');
             $table->string('option_b');
             $table->string('option_c');
             $table->string('option_d');
+            $table->string('answer');
+            $table->string('image')->nullable();
             $table->timestamps();
         });
     }

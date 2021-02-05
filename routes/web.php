@@ -24,7 +24,7 @@ Route::group(['namespace'=>'Auth'], function() {
     Route::get('/forgot-password', 'ForgotPasswordController@index')->name('forgot-password');
     Route::post('/get-new-password', 'ForgotPasswordController@getNewPassword')->name('get-new-password');
     Route::get('/reset-password/token={token}', 'ForgotPasswordController@getReset')->name('get-reset-password');
-    Route::post('//{token}/password-is-reset', 'ForgotPasswordController@resetPassword')->name('reset-password');
+    Route::post('/{token}/password-is-reset', 'ForgotPasswordController@resetPassword')->name('reset-password');
 });
 
 Route::group(['middleware'=>'auth'], function(){ //route cho ng dung da dang nhap
@@ -38,7 +38,15 @@ Route::group(['middleware'=>'auth'], function(){ //route cho ng dung da dang nha
         Route::group(['prefix' => '/user-manage', 'as' => 'user-manage.'],function(){
             Route::get('/','AdminController@viewUser')->name('user-manage'); //sau khi dang nhap cac admin va superadmin dc chuyen den trang nay
             Route::post('/{id}/edit-user','AdminController@editUser')->name('edit-user');
-    
+        });
+        Route::group(['prefix'=>'/subject','as'=>'subject.'],function(){
+            Route::get('/{id}','SubjectController@indexSubject')->name('index-subject');
+            Route::post('/create-subject','SubjectController@createSubject')->name('create-subject');
+            Route::get('/{subject_id}/create-category','SubjectController@category')->name('index-category');
+            Route::post('/{subject_id}/create-category','SubjectController@createCategory')->name('create-category');
+            Route::post('/{id}/delete-category', 'SubjectController@deleteCategory')->name('delete-category');
+            Route::get('/category={id}/create-question', 'QuestionController@question')->name('index-question');
         });
     });
 });
+

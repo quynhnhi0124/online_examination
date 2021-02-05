@@ -37,7 +37,7 @@ class ForgotPasswordController extends Controller
         $email = $request->email;
         $username = Repository::getUser()->findBy('email',$email)->first();
         if($username){
-            $request['token'] = StringHelper::generateUnique();
+            $request['token'] = StringHelper::generateUnique(); //helper sinh token duy nhat
             $item = $request->only([
                 'email',
                 'token',
