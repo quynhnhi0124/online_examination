@@ -48,4 +48,19 @@ class User extends Authenticatable
     {
         $this->attributes['password'] = StringHelper::hash($password);
     }
+
+    public static function scopeSearchByKeyword($query, $keyword)
+    {
+        if($keyword != " "){
+            $query->where(function ($query) use ($keyword){
+                $query->where("firstname", "LIKE", "%$keyword%")
+                        ->orWhere("lastname", "LIKE", "%$keyword%")
+                        ->orWhere("username", "LIKE", "%$keyword%")
+                        ->orWhere("email", "LIKE", "%$keyword%")
+                        ->orWhere("mobile", "LIKE", "%$keyword%");
+            });
+        }
+        return $query;
+    }
+
 }

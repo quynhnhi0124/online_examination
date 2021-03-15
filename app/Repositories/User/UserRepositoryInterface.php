@@ -6,7 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 use App\Repositories\RepositoryInterface;
 use App\User;
 
-
 interface UserRepositoryInterface {
     
+    public function userPerMonth();
+
+    public function systemRank();
 }

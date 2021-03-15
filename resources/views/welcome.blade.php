@@ -13,11 +13,11 @@
                 <div class="caption">
 					<h1 class="sp-layer slider-text-big"
 					data-position="center" data-show-transition="left" data-hide-transition="right" data-show-delay="1500" data-hide-delay="200">
-					<span class="highlight-texts">Above and Beyond!</span>
+					<span class="highlight-texts">Hệ thống đề thi đa dạng!</span>
 					</h1> 
 					<p class="sp-layer"
 					data-position="center" data-vertical="15%" data-show-delay="2000" data-hide-delay="200" data-show-transition="left" data-hide-transition="right">
-						Lorem ipsum dolor sit amet, consectetur adipisicing elit
+						Số lượng đề thi phong phú ở mỗi môn thi
 					</p>
 				</div>
             </div>
@@ -30,12 +30,12 @@
                 <div class="caption">
                 <h1 class="sp-layer slider-text-big"
                 data-position="center" data-show-transition="left" data-hide-transition="right" data-show-delay="1500" data-hide-delay="200">
-                <span class="highlight-texts">Early Learning</span>
+                <span class="highlight-texts">Cải thiện kỹ năng</span>
                 </h1>
 
                 <p class="sp-layer"
                 data-position="center" data-vertical="15%" data-show-delay="2000" data-hide-delay="200" data-show-transition="left" data-hide-transition="right">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit
+                    Giúp học sinh cải thiện kỹ năng làm bài thi
                 </p>
 				</div>
             </div>
@@ -79,7 +79,7 @@
                 </div>
 
                 <div class="col-md-6 col-sm-6 col-xs-12 customized-text wow fadeInDown black-ed">
-				    <p>Lorem ipsum dolor sit amet, consec tetur adipisi cing elit. Ipsa sit, numquam amet voluptatibus obcaecati ea maiores totam nostrum, ad iure rerum quas harum  ipsum.  lobcaecati ea maiores totam nostrum, ad iure rerum quas harum ipsum. Rem ea ducimus quos quae quo.</p>
+				    <p>Chào mừng các bạn đến với trang web thi trắc nghiệm trực tuyến! Ở đây chúng tôi cung cấp những đề thi chất lượng </p>
                     <div class="row"> 
                         <div class="col-md-11">
                             <strong>Skill Central</strong>
@@ -110,45 +110,25 @@
                 <!-- Section Header -->
                 <div class="col-md-12 col-sm-12 col-xs-12 section-header wow fadeInDown">
                     <h2><span class="highlight-text">Phân loại đề thi</span></h2>
-                   
-                    <p class="col-md-8 col-sm-10 col-xs-12 col-md-offset-2 col-sm-offset-1">Đề thi được phân loại theo môn học, có các câu hỏi phân chia độ khó</p>
                 </div>
                 <!-- Section Header End -->
- 
-                <div class="our-services">
-		            <div class="row">
-                        <div class="col-md-4 col-sm-4 col-xs-12 text-xs-center wow fadeInDown" data-wow-delay=".2s">
-                            <div class="service-box">
-                                <img src="{{asset ('/img/slider-1.jpg')}}" alt="Custom Image">
-                                <div class="icon">
-                                    <i class="icon_cone"></i> <h3>Toán</h3>
-                                </div> 
-                                <p>Lorem ipsum dolor sit amet, consec tetur adipisi cing elit. Ipsa sit, numquam amet voluptatibus obcaecati ea maiores totam nostrum, ad iure rerum quas harum  </p>
-                                <a href="#contact" class="btn">Xem danh sách</a>
-                            </div> 
+
+                <div class="col-md-6 col-sm-6 col-xs-12 wow fadeInDown black-ed">
+				    <p>Ở đây chúng tôi cung cấp những đề thi chất lượng từ các môn học: </p>
+                    <div class="row"> 
+                        <div class="col-md-11" style="padding-right: 0; height: 320px; overflow-y:scroll;">
+                            <ul class="list-group list-group-flush">
+                            @foreach($subjects as $s)
+                                <li class="list-group-item">{{$s->subject}}</li>
+                            @endforeach
+                            </ul>
                         </div>
-                        <div class="col-md-4 col-sm-4 col-xs-12 text-xs-center wow fadeInDown" data-wow-delay=".2s">
-                            <div class="service-box">
-                                <img src="{{asset ('/img/slider-2.jpg')}}" alt="Custom Image">
-                                <div class="icon">
-                                    <i class="icon_mug"></i><h3>Lý</h3>
-                                </div>
-                                <p>Lorem ipsum dolor sit amet, consec tetur adipisi cing elit. Ipsa sit, numquam amet voluptatibus obcaecati ea maiores totam nostrum, ad iure rerum quas harum  </p>
-                                <a href="#contact" class="btn">Xem danh sách</a>
-                            </div>
-                        </div>
-                        <div class="col-md-4 col-sm-4 col-xs-12 text-xs-center wow fadeInDown" data-wow-delay=".2s">
-                            <div class="service-box">
-                                <img src="{{asset ('/img/slider-3.jpg')}}" alt="Custom Image">
-                                <div class="icon">
-                                    <i class="icon_currency"></i><h3>Hóa</h3>
-                                </div>
-                                <p>Lorem ipsum dolor sit amet, consec tetur adipisi cing elit. Ipsa sit, numquam amet voluptatibus obcaecati ea maiores totam nostrum, ad iure rerum quas harum  </p>
-                                <a href="#contact" class="btn">Xem danh sách</a>
-                            </div>
-                        </div>
-                    </div> 
-                </div> 
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-sm-6 col-xs-12 custom-sec-img wow fadeInDown">
+                    <img src="{{asset ('/img/slider-1.jpg')}}" alt="Custom Image">
+                </div>
             </div>
         </div>
     </section> 
@@ -167,26 +147,26 @@
             <div class="col-md-3 col-sm-6 col-xs-12 text-xs-center">
                 
                 <i class="icon_mic_alt wow pulse" style="visibility: visible; animation-name: pulse;"></i>
-                <h4>Margins</h4>
-				<h1 class="text-primary">100,000</h1>
+                <h4>Số môn thi</h4>
+				<h1 class="text-primary">{{count($subject)}}</h1>
             </div>
             <div class="col-md-3 col-sm-6 col-xs-12 text-xs-center">
                 
                 <i class="icon_gift_alt wow pulse" style="visibility: visible; animation-name: pulse;"></i>
-                <h4>Completed</h4>
-				<h1 class="text-primary">34201</h1>
+                <h4>Số đề thi</h4>
+				<h1 class="text-primary">{{$exams}}</h1>
             </div>
             <div class="col-md-3 col-sm-6 col-xs-12 text-xs-center">
               
                 <i class="icon_mobile wow pulse" style="visibility: visible; animation-name: pulse;"></i>
-  <h4>Projects</h4>               
-			   <h1 class="text-primary">152</h1>
+                <h4>Số người dùng</h4>               
+			   <h1 class="text-primary">{{$users}}</h1>
             </div>
             <div class="col-md-3 col-sm-6 col-xs-12 text-xs-center">
                
                 <i class="icon_lightbulb_alt wow pulse" style="visibility: visible; animation-name: pulse;"></i>
- <h4>Customers</h4>               
-			   <h1 class="text-primary">56500</h1>
+                <h4>Số lượt làm bài thi</h4>               
+			   <h1 class="text-primary">{{$attempts}}</h1>
             </div>
         </div> 
     </div>
@@ -203,65 +183,27 @@
                     <p class="col-md-8 col-sm-10 col-xs-12 col-md-offset-2 col-sm-offset-1">Bảng xếp hạng theo điểm, lượt làm bài thi của người dùng</p>
                 </div>
                 <!-- Section Header End -->
-
+                @foreach($data as $key=>$rank)
                 <div class="pricing-wrapper">
-
                     <!-- Plans -->
                     <div class="col-md-4 col-sm-4 col-xs-12 pricing-plans wow bounceInLeft hoverer">
                         <div class="pricing-titles">
-                            <h2>#1</h2>
-                            <p>Username</p>
+                            <h2>#{{$key+1}}</h2>
+                            <p>Username: {{$rank->username}}</p>
                         </div>
                         <div class="pricing-service-name">
                             <ul>
-                                <li>Lượt thi: </li>
-                                <li>Điểm trung bình: </li> 
+                                <li>Lượt thi: {{$rank->number}}</li>
+                                <li>Điểm trung bình: {{number_format($rank->score, 2)}}</li> 
                             </ul>
                         </div>
 
                          <div class="bg-btn">
-                            <a href="#" class="signup-btn">Xem thêm</a>
-                        </div>
-                    </div>
-                    <!-- Plans End -->
-
-                    <!-- Plans -->
-                    <div class="col-md-4 col-sm-4 col-xs-12 pricing-plans wow fadeInUp hoverer" data-wow-duration="1s">
-                        <div class="pricing-titles">
-                            <h2>#2</h2>
-                            <p>Username</p>
-                        </div>
-                        <div class="pricing-service-name">
-                            <ul>
-                               <li>Lượt thi: </li>
-                                <li>Điểm trung bình: </li> 
-                            </ul>
-                        </div>
-
-                        <div class="bg-btn">
-                            <a href="#" class="signup-btn">Xem thêm</a>
-                        </div>
-                    </div>
-                    <!-- Plans End -->
-
-                    <!-- Plans -->
-                    <div class="col-md-4 col-sm-4 col-xs-12 pricing-plans wow bounceInRight hoverer">
-                        <div class="pricing-titles">
-                            <h2>#3</h2>
-                            <p>Username</p>
-                        </div>
-                        <div class="pricing-service-name">
-                             <ul>
-                                <li>Lượt thi: </li>
-                                <li>Điểm trung bình: </li>
-                            </ul>
-                        </div>
-                        <div class="bg-btn">
-                            <a href="#" class="signup-btn">Xem thêm</a>
                         </div>
                     </div>
                     <!-- Plans End -->
                 </div>
+                @endforeach
             </div>
         </div> 
     </section>

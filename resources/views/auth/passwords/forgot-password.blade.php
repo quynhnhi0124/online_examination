@@ -42,9 +42,12 @@
                                         <h1 class="h4 text-gray-900 mb-2">Quên mật khẩu</h1> 
                                         <p class="mb-4">Nhập vào email đăng ký tài khoản để nhận mật khẩu mới: </p>
                                     </div>
-                                    @if(session('alert'))
-                                        <section class='alert alert-success'>{{session('alert')}}</section>
-                                    @endif 
+                                    @if (session('new_password'))
+                                    @php($messageKey = Session::get('new_password'))
+                                    <div class="alert alert-{{ $messageKey }} " role="alert">
+                                        {{ __("message.new_password.{$messageKey}") }}
+                                    </div>
+                                    @endif
                                     <form class="user" action="{{route('get-new-password')}}"method="POST">
                                     @csrf
                                         <div class="form-group">

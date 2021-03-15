@@ -12,11 +12,11 @@
 	<link rel="stylesheet" href="{{ asset('elegant_font/style.css')}}" />
     <link rel="stylesheet" href="{{ asset('css/magnific-popup.css')}}">
     <link rel="stylesheet" href="{{ asset('css/slider-pro.css')}}">
-    <link rel="stylesheet" href="{{ asset('css/owl.carousel.css')}}">
-    <link rel="stylesheet" href="{{ asset('css/owl.theme.css')}}">
+    <link rel="stylesheet" href="{{ asset('css/owl.carousel.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/owl.carousel.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/owl.theme.default.css') }}">
     <link rel="stylesheet" href="{{ asset('css/owl.transitions.css')}}">
     <link rel="stylesheet" href="{{ asset('css/animate.css')}}">
-	<!-- <link rel="stylesheet" href="elegant_font/style.css">  -->
     <link rel="stylesheet" href="{{ asset('css/style.css')}}"> 
 
 </head>
@@ -46,12 +46,6 @@
                             <li>
                             <a href="#services">Đề thi</a>
                         </li>
-                        <li>
-                            <a href="#portfolio">Liên hệ</a>
-                        </li>
-                        <!-- <li>
-                            <a href="#pricing">PRICING</a>
-                        </li> -->
                         @guest
                             <li>
                                 <a href="{{ route('auth.login') }}">Đăng nhập</a>
@@ -68,9 +62,10 @@
                                     @if ( Auth::user()->role == 0 || Auth::user()->role == 1)                                    
                                     <a href="{{route ('admin.user-manage.user-manage')}}">Quản lý người dùng</a>
                                     @endif
+                                    <a href="{{route ('home')}}">Trang cá nhân</a>
                                     <form action="{{ route('logout') }}" method="post">
                                         @csrf
-                                        <button class="btn btn-link">Đăng xuất</button>
+                                        <button class="dropdown-item btn btn-link">Đăng xuất</button>
                                     </form>
                                 </div>
                             </li>
@@ -105,7 +100,7 @@
                     </li>
                 </ul>
                 <br/><br/>
-                <p>Copyright © 2018. <a href="https://webthemez.com/tag/free" target="_blank">Free Website Template</a> by WebThemez. </p>
+                <p>quuynhnhi.jvb@gmail.com</p>
             </div>
         </div>
     </div>

@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers\Auth;
 
+use Auth;
+use App\Http\Requests\LoginRequest;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-use App\Http\Requests\LoginRequest;
-use Auth;
-use App\User;
+
+
 
 class LoginController extends Controller
 {
@@ -35,8 +36,12 @@ class LoginController extends Controller
         $password = $request->get('password');
         if (Auth::attempt(['username' => $username, 'password' => $password,'status'=>1])){
             return redirect()->route('admin.user-manage.user-manage');
-        } else {
-            dd('user got banned');
+        } 
+        elseif(Auth::attempt(['username' => $username, 'password' => $password,'status'=>0])){
+            return redirect()->back()->with('login_message','secondary');
+        }
+        else {
+            return redirect()->back()->with('login_message','danger');
         }
     }
 

@@ -6,6 +6,7 @@ use \App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\User;
 use App\Repositories\Repository;
+use App\Requests\EditUserRequest;
 
 class UserManageController extends Controller
 {
@@ -15,7 +16,7 @@ class UserManageController extends Controller
         return view('auth.edit-user', ['user'=>$user]);
     }
 
-    public function editInfo($id, Request $request)
+    public function editInfo($id, EditUserRequest $request)
     {
         $input = $request->only([
             'firstname',
@@ -23,16 +24,9 @@ class UserManageController extends Controller
             'email',
             'mobile',
            ]);
-        Repository::getUser()->update($id, $input);
-        return redirect()->route('home');
-    }
-
-    public function find($id)
-    {
-        
-    }
-    public function delete($id)
-    {
-
+        $update = Repository::getUser()->update($id, $input);
+        if($update){
+            return redirect()->back()->with('edit_info', 'success');
+        }else return redirect()->back()->with('edit_info', 'danger');
     }
 }

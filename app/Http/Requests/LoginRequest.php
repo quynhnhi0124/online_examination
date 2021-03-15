@@ -25,7 +25,14 @@ class LoginRequest extends FormRequest
     {
         return [
             'username' => 'required',
-            'password' => 'required|min:8|max:32',
+            'password' => 'required',
+        ];
+    }
+    public function messages()
+    {
+        return [
+            'username.required' => 'Nhập vào tên đăng nhập',
+            'password.required' => 'Nhập vào mật khẩu'
         ];
     }
 }

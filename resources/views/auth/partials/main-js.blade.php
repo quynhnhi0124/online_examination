@@ -1,3 +1,5 @@
+<script src="{{asset('js/alert.js')}}"></script>
+
 <!-- Bootstrap core JavaScript-->
 <script src="{{asset('admin_asset/vendor/jquery/jquery.min.js')}}"></script>
 <script src="{{asset('admin_asset/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>

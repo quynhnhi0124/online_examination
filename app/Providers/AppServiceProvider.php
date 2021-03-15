@@ -30,6 +30,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        // $subject = Repository::getSubject()->join('subject_category','subject_category.subject_id','subjects.id')->unique('subject_id');
         $subject = Repository::getSubject()->get();
         View::share('subject',$subject);
     }

@@ -2,10 +2,12 @@
 
 namespace App\Repositories;
 
+use Illuminate\Support\Facades\Schema;
 use App\Repositories\RepositoryInterface;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Log;
+use Carbon\Carbon;
 
 abstract class BaseRepository implements RepositoryInterface
 {
@@ -31,6 +33,7 @@ abstract class BaseRepository implements RepositoryInterface
     public function get()
     {
         return $this->model->all();
+
     }
     
     /**
@@ -38,6 +41,11 @@ abstract class BaseRepository implements RepositoryInterface
      */
     public function paginate(int $limit){
         return $this->model->paginate($limit);
+    }
+
+    public function where($index,$op,$value)
+    {
+        return $this->model->where($index,$op,$value);
     }
 
     public function find($id)
@@ -58,6 +66,24 @@ abstract class BaseRepository implements RepositoryInterface
         return $item;
     }
 
+    public function insert(array $input)
+    {
+        $input+=[
+            'created_at'=>Carbon::now(),
+            'updated_at'=>Carbon::now(),
+        ];
+        return $this->model->insert($input);
+    }
+
+    public function insertGetId(array $input)
+    {
+        $input+=[
+            'created_at'=>Carbon::now(),
+            'updated_at'=>Carbon::now(),
+        ];
+        return $this->model->insertGetId($input);
+    }
+
     public function update($id, array $input)
     {
         $item = $this->find($id);
@@ -70,9 +96,17 @@ abstract class BaseRepository implements RepositoryInterface
         return $item;
     }
 
+    public function updateMultiple($id,$value, array $input)
+    {
+        return $this->model->where($id,'=',$value)->update($input);
+    }
+
     public function delete($id)
     {
-        return $this->model->destroy($id);
+        $item = $this->model->find($id);
+        // dd($item);
+        // return $item->update(['deleted_at'=>Carbon::now()]);
+        return $item->delete();
     }
 
     public function findBy($attribute, $value){
@@ -81,12 +115,27 @@ abstract class BaseRepository implements RepositoryInterface
 
     public function join($table, $first, $second, $type = 'inner')
     {
-        return $this->model->join($table,$first,'=',$second)->get();
+        if($table.'.deleted_at'){
+            return $this->model->join($table, $first , '=', $second)->whereNull($table.'.deleted_at');
+        }
+        return $this->model->join($table, $first , '=', $second);
     }
 
     public function joinWhere($table, $first, $second, $attribute,$value)
     {
-        return $this->model->join($table,$first,'=',$second)->where($attribute,'=',$value)->get();
+        if($table.'.deleted_at'){
+            return $this->model->join($table,$first,'=',$second)->where($attribute,'=',$value)->whereNull($table.'.deleted_at');
+        }
+        return $this->model->join($table,$first,'=',$second)->where($attribute,'=',$value);
+
+
     }
-    
+
+    public function count(){
+        return $this->model->count();
+    }
+
+    public function select(array $select){
+        return $this->model->select($select);
+    }
 }

@@ -9,4 +9,5 @@ use App\SubjectModel;
 
 interface SubjectRepositoryInterface {
     
+    public function examRatio();
 }

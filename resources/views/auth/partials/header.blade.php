@@ -8,12 +8,7 @@
     <!-- Topbar Search -->
     <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
         <div class="input-group">
-            <input type="text" class="form-control bg-light border-0 small" placeholder="Tìm kiếm theo username.." aria-label="Search" aria-describedby="basic-addon2">
-            <div class="input-group-append">
-                <button class="btn btn-primary" type="button">
-                    <i class="fas fa-search fa-sm"></i>
-                </button>
-            </div>
+            <a href="{{ url()->previous() }}">&larr;Trở về</a>
         </div>
     </form>
 
@@ -54,7 +49,10 @@
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="{{route('welcome')}}">
                         Trang chủ
-                    </a>   
+                </a>  
+                <a class="dropdown-item" href="{{route('get-change-password', Auth::user()->id)}}">
+                    Đổi mật khẩu
+                </a>   
                 <form action="{{route ('logout')}}" method="post">
                     @csrf
                     <button class="dropdown-item btn-link">

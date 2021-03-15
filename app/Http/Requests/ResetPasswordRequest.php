@@ -24,8 +24,17 @@ class ResetPasswordRequest extends FormRequest
     public function rules()
     {
         return [
-            'password'=>'required|string|min:6',
-            'password_confirm'=>'required_with:password|string|same:password'
+            'password'=>'required|min:6',
+            'password_confirm'=>'required_with:password|same:password',
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'password.required'=>'Nhập vào mật khẩu của bạn',
+            'password.min'=>"Độ dài mật khẩu ít nhất là 6 kí tự",
+            'password_confirm.same'=>"Mật khẩu nhập lại không khớp",
         ];
     }
 }

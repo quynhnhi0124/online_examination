@@ -17,7 +17,9 @@
 
                 <div class="card-body">
                     <h3 class="text-xs-center">{{ __('Đăng ký') }}</div>
-
+                        @if(session('alert'))
+                            <section class='alert alert-success'>{{session('alert')}}</section>
+                        @endif 
                     <form method="POST" action="{{ route('register') }}">
                         @csrf
                         <div class="form-group row">
@@ -25,6 +27,11 @@
 
                             <div class="col-md-6">
                                 <input id="firstname" type="text" class="form-control" name="firstname" value="{{ old('firstname') }}" required autocomplete="firstname" autofocus>
+                                @error('firstname')
+                                    <div class="invalid-feedback">
+                                        <strong>{{ $message }}</strong>
+                                    </div>
+                                @enderror
                             </div>
                         </div>
                         <div class="form-group row">
@@ -32,6 +39,11 @@
 
                             <div class="col-md-6">
                                 <input id="lastname" type="text" class="form-control" name="lastname" value="{{ old('lastname') }}" required autocomplete="lastname" autofocus>
+                                @error('lastname')
+                                    <div class="invalid-feedback">
+                                        <strong>{{ $message }}</strong>
+                                    </div>
+                                @enderror
                             </div>
                         </div>
                         <div class="form-group row">
@@ -41,9 +53,9 @@
                                 <input id="username" type="text" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required autocomplete="username" autofocus>
 
                                 @error('username')
-                                    <span class="invalid-feedback" role="alert">
+                                    <div class="invalid-feedback">
                                         <strong>{{ $message }}</strong>
-                                    </span>
+                                    </div>
                                 @enderror
                             </div>
                         </div>
@@ -55,9 +67,9 @@
                                 <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
 
                                 @error('email')
-                                    <span class="invalid-feedback" role="alert">
+                                    <div class="invalid-feedback">
                                         <strong>{{ $message }}</strong>
-                                    </span>
+                                    </div>
                                 @enderror
                             </div>
                         </div>
@@ -67,11 +79,10 @@
 
                             <div class="col-md-6">
                                 <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
-
                                 @error('password')
-                                    <span class="invalid-feedback" role="alert">
+                                    <div class="invalid-feedback">
                                         <strong>{{ $message }}</strong>
-                                    </span>
+                                    </div>
                                 @enderror
                             </div>
                         </div>
@@ -80,7 +91,7 @@
                             <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Nhập lại mật khẩu') }}</label>
 
                             <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                                <input id="password-confirm" type="password" class="form-control" name="password_confirm" required autocomplete="new-password">
                             </div>
                         </div>
 
@@ -89,14 +100,22 @@
 
                             <div class="col-md-6">
                                 <input id="mobile" type="text" class="form-control" name="mobile" value="{{ old('mobile') }}" required autocomplete="mobile" autofocus>
+                                @error('mobile')
+                                    <div class="invalid-feedback">
+                                        <strong>{{ $message }}</strong>
+                                    </div>
+                                @enderror
                             </div>
                         </div>
 
-                        <div class="form-group row mb-0 text-xs-center">
-                            <div class="col-md-6 offset-md-4 ">
+                        <div class="form-group text-md-center">
+                            <div class="row" style="display: flex; align-items: center; justify-content: center;">
                                 <button type="submit" class="btn btn-primary">
                                     {{ __('Đăng ký tài khoản') }}
                                 </button>
+                                <div class="login" style="margin: 1rem;">
+                                    <a href="{{route('auth.login')}}">Hoặc đăng nhập tại đây</a>
+                                </div>
                             </div>
                         </div>
                     </form>

@@ -4,7 +4,7 @@
 <!--head-->
 @include('auth.partials.head')
 
-
+@include('sweetalert::alert')
 <body id="page-top">
 
 <!-- Page Wrapper -->

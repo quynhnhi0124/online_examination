@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Auth;
+
 use DB;
 use App\User;
 use Carbon\Carbon;
@@ -35,7 +36,7 @@ class ForgotPasswordController extends Controller
     public function getNewPassword(Request $request)
     {
         $email = $request->email;
-        $username = Repository::getUser()->findBy('email',$email)->first();
+        $username = Repository::getUser()->findBy('email', $email)->first();
         if($username){
             $request['token'] = StringHelper::generateUnique(); //helper sinh token duy nhat
             $item = $request->only([
@@ -44,44 +45,54 @@ class ForgotPasswordController extends Controller
             ]);
             Repository::getPassword()->create($item);
             Mail::to($email)->send(new ForgotPassword($request['token']));
-            $alert = "Một đường link thay đổi mật khẩu đã được gửi đến email của bạn!";
-            return redirect()->back()->with('alert',$alert);
+            return redirect()->back()->with('new_password', 'success');
         }
         else
         {
-            $alert = "Không tìm thấy email";
-            return redirect()->back()->with('alert',$alert);
+            return redirect()->back()->with('new_password', 'danger');
         }
     }
 
     public function getReset($token, Request $request)
     {
-        $data = Repository::getPassword()->findBy('token',$token)->first();
-        if($data)
+        $data = Repository::getPassword()->findBy('token', $token)->first();
+        if($data && $data->active == 1)
         {
-            if(Carbon::parse($data->updated_at)->addMinutes(5)->isPast())
+            if(Carbon::parse($data->created_at)->diffInMinutes(now()) > 24*60)
             {
-                $data->delete();
+                $deactive = [
+                    "active"=>0,
+                ]; 
+                Repository::getPassword()->update($data->id, $deactive);
                 $msg = "Quá thời gian!";
-                return view('auth.passwords.reset',['msg'=>$msg]);
+                return view('auth.passwords.reset', ['msg'=>$msg]);
             }
             return view('auth.passwords.reset', ['token' =>$token]);
         }
-        $msg =  "Không tìm thấy";
-        return view('auth.passwords.reset',['msg'=>$msg]);
+        return view('404-page');
 
     }
 
-    public function resetPassword($token, Request $request)
+    public function resetPassword($token, ResetPasswordRequest $request)
     {
-        $data = Repository::getPassword()->findBy('token',$token)->first();
-        $user = Repository::getUser()->findBy('email',$data->email)->first();
-        $input = $request->only([
-            'password'
-        ]);
-        Repository::getUser()->update($user->id, $input);
-        $data->delete();
-        $msg = "Thành công!";
-        return view('auth.passwords.reset', ['msg'=>$msg,'token'=>$token]);
+        $data = Repository::getPassword()->findBy('token', $token)->first();
+        if($data && $data->active == 1){
+            if(Carbon::parse($data->created_at)->diffInMinutes(now()) > 24*60) {
+                return view('404-page');
+            }
+            $user = Repository::getUser()->findBy('email', $data->email)->first();
+            $input = $request->only([
+                'password'
+            ]);
+            Repository::getUser()->update($user->id, $input);
+            $deactive = [
+                "active"=>0,
+            ]; 
+            Repository::getPassword()->update($data->id, $deactive);
+            $msg = "Thành công!";
+            return view('auth.passwords.reset', ['msg'=>$msg, 'token'=>$token]);
+        }
+        return view('404-page');
+
     }
 }

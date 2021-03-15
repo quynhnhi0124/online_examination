@@ -44,23 +44,28 @@
                                     </div>
                                     @if(!empty($msg))
                                         <section class='alert alert-success'>{{$msg}}</section>
-                                        <a class="small" href="{{route('auth.login')}}">Đi đến trang đăng nhập</a>
+                                        @if(Auth::check())
+                                            <a class="small" href="{{ route('home') }}">&larr;Trở về trang cá nhân</a>
+                                        @else
+                                            <a class="small" href="{{route('auth.login')}}">Đi đến trang đăng nhập</a>
+                                        @endif
                                     @else
                                     <form class="user" action="{{route('reset-password', $token)}}"method="POST">
-                                    @csrf
+                                        @csrf
                                         <input type="hidden" name="token" value="{{ $token }}">
                                         <div class="form-group row">
                                             <label for="password" class="col-form-label">{{ __('Mật khẩu mới') }}</label>
-                                            <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+                                            <input id="password" type="password" class="form-control" name="password" required autocomplete="new-password">
                                             @error('password')
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $message }}</strong>
-                                                </span>
+                                                <strong>{{ $message }}</strong>
                                             @enderror
                                         </div>
                                         <div class="form-group row">
                                             <label for="password-confirm" class="col-form-label">{{ __('Nhập lại mật khẩu') }}</label>
-                                            <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                                            <input id="password-confirm" type="password" class="form-control" name="password_confirm" required autocomplete="new-password">
+                                            @error('password-confirm')
+                                                <strong>{{ $message }}</strong>
+                                            @enderror
                                         </div>
                                         <button type="submit" class="btn btn-primary btn-user btn-block">
                                             Đặt lại mật khẩu

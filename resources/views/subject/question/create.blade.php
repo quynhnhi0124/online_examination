@@ -1,7 +1,12 @@
 @extends('auth.layouts.app')
 <title>Thêm câu hỏi</title>
 <style>
-    .question-list li{
+    #add-question{
+        display: none;
+        text-align: end;
+        padding: 0 1rem;
+    }
+    .question-list li {
         border:none;
     }
 </style>
@@ -12,90 +17,112 @@
             <div class="card mb-4">
                 <div class="card-body">
                     <h3>Thêm câu hỏi</h3>
-                    <div class="list-group-item" style="border:none;">
+                    <div class="list-group-item" style="border:none; padding: 0 1rem;">
                         <div class="input-group row">
                             <div class="input-group-prepend">
                                 <label class="input-group-text" for="question-quantity">Số câu hỏi</label>
                             </div>
                             <input name="question-quantity" class="form-control col-sm-10 ml-auto" id="question-quantity" type="text">
                             <div class="input-group-append">
-                                <button class="btn btn-outline-secondary" type="button">Thêm</button>
+                                <button class="btn btn-outline-secondary" type="button" onclick="numberQuestion()">Thêm</button>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
             <!-- Default Card Example -->
-            <form action="#" method="post">
-                @csrf
-                <div class="card mb-4">
-                    <div class="card-body">
-                        <!-- <h3>Thêm câu hỏi</h3> -->
-                        <ul class="list-group list-group-flush question-list">
-                            <li class="list-group-item">
-                                <div class="form-cotrol row">
-                                    <label for="edit-lastname">Câu hỏi:</label>
-                                    <textarea name="lastname" class="form-control col-sm-10 ml-auto" id="edit-lastname" type="text"></textarea>
-                                </div>
-                            </li>
-                            <li class="list-group-item">
-                                <div class="form-cotrol row">
-                                    <label for="edit-username">Đáp án A:</label>
-                                    <input name="username" class="form-control col-sm-10 ml-auto" id="edit-username" type="text">
-                                </div>
-                            </li>
-                            <li class="list-group-item">
-                                <div class="form-cotrol row">
-                                    <label for="edit-email">Đáp án B:</label>
-                                    <input name="email" class="form-control col-sm-10 ml-auto" id="edit-email" type="text" >
-                                </div>
-                            </li>
-                            <li class="list-group-item">
-                                <div class="form-cotrol row">
-                                    <label for="edit-mobile">Đáp án C:</label>
-                                    <input name="mobile" class="form-control col-sm-10 ml-auto" id="edit-mobile" type="text" >
-                                </div>
-                            </li>
-                            <li class="list-group-item">
-                                <div class="form-cotrol row">
-                                    <label for="role">Đáp án D:</label>
-                                    <input name="role" class="form-control col-sm-10 ml-auto" id="role" type="text">
-                                </div>
-                            </li>
-                            <li class="list-group-item">
-                                <div class="form-cotrol row">
-                                    <div class="col-sm-6 mr-auto">
-                                        <label for="status">Đáp án:</label>
-                                        <input name="status" class="form-control" id="status" type="text">
-                                    </div>
-                                    <div class="col-sm-6 ml-auto">
-                                        <label for="file">Hình ảnh:</label>
-                                        <div class="custom-file" id="file">
-                                            <label class="custom-file-label" for="img-file">Choose file</label>
-                                            <input type="file" class="custom-file-input" id="img-file">
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="list-group-item ml-auto">
-                                <button class="btn btn-primary btn-icon-split" type="submit">
-                                    <span class="icon text-white-50">
-                                    <i class="fas fa-check"></i>
-                                    </span>
-                                    <span class="text">Chỉnh sửa</span>
-                                </button>
+            <div class="card mb-4">
+                <div class="card-body">
+                    <form action="{{route('admin.subject.create-question',[$subject_id,$category_id])}}" method="post">
+                        @csrf
+                        <div id="question"></div>
+                        <div id="add-question">
+                            <hr>
                                 <button class="btn btn-danger btn-icon-split">
                                     <span class="icon text-white-50">
-                                    <i class="fas fa-trash"></i>
+                                    <i class="fas fa-times"></i>
                                     </span>
-                                    <span class="text"><a href="#">Hủy</a></span>
+                                    <span class="text"><a href="{{url()->previous()}}">Hủy</a></span>
+                                </button>&nbsp&nbsp
+                                <button class="btn btn-primary btn-icon-split" type="submit">
+                                    <span class="icon text-white-50">
+                                    <i class="fas fa-plus"></i>
+                                    </span>
+                                    <span class="text">Thêm câu hỏi</span>
                                 </button>
-                            </li>
-                        </ul>
-                    </div>
+                        </div>
+                    </form>
                 </div>
-            </form>
+            </div>
         </div>
     </div>
 </div>
+<script>
+    function numberQuestion()
+    {
+        var x = document.getElementById('question-quantity').value;
+        section = " ";
+        for(i = 0; i < x; i++)
+        {
+            section += 
+                        '<ul class="list-group list-group-flush question-list">'+
+                            '<li class="list-group-item">'+
+                                '<div class="form-cotrol row">'+
+                                    '<label for="question-'+(i)+'">Câu hỏi '+(i+1)+':</label>'+
+                                    '<textarea name="q['+(i)+'][question]" class="form-control col-sm-10 ml-auto" id="question-'+(i)+'" type="text"></textarea>'+
+                                '</div>'+
+                            '</li>'+
+                            '<li class="list-group-item">'+
+                                '<div class="form-cotrol row">'+
+                                    '<div class="col-sm-6 mr-auto">'+
+                                        '<label for="option-a-question-'+(i)+'">Đáp án A:</label>'+
+                                        '<input name="q['+(i)+'][option_a]" class="form-control" id="option-a-question-'+(i)+'" type="text">'+
+                                    '</div>'+
+                                    '<div class="col-sm-6 ml-auto">'+
+                                        '<label for="option-b-question-'+(i)+'">Đáp án B:</label>'+
+                                        '<input name="q['+(i)+'][option_b]" class="form-control" id="option-b-question-'+(i)+'" type="text">'+
+                                    '</div>'+
+                                '</div>'+
+                            '</li>'+
+                            '<li class="list-group-item">'+
+                                '<div class="form-cotrol row">'+
+                                    '<div class="col-sm-6 mr-auto">'+
+                                        '<label for="option-c-question-'+(i)+'">Đáp án C:</label>'+
+                                        '<input name="q['+(i)+'][option_c]" class="form-control" id="option-c-question-'+(i)+'" type="text">'+
+                                    '</div>'+
+                                    '<div class="col-sm-6 ml-auto">'+
+                                        '<label for="option-d-question-'+(i)+'">Đáp án D:</label>'+
+                                        '<input name="q['+(i)+'][option_d]" class="form-control" id="option-d-question-'+(i)+'" type="text">'+
+                                    '</div>'+
+                                '</div>'+
+                            '</li>'+
+                            '<li class="list-group-item">'+
+                                '<div class="form-cotrol row">'+
+                                    '<div class="col-sm-6 mr-auto">'+
+                                        '<label for="answer-question-'+(i)+'">Đáp án:</label>'+
+                                        '<select name="q['+(i)+'][answer]" class="custom-select" id="answer-question-'+(i)+'">'+
+                                            '<option selected>Chọn đáp án...</option>'+
+                                            '<option value="A">A</option>'+
+                                            '<option value="B">B</option>'+
+                                            '<option value="C">C</option>'+
+                                            '<option value="D">D</option>'+
+                                        '</select>'+
+                                    '</div>'+
+                                    '<div class="col-sm-6 ml-auto">'+
+                                        '<label for="img-file-question-'+(i)+'">Hình ảnh:</label>'+
+                                        '<div class="custom-file" id="img-file-question-'+(i)+'">'+
+                                            '<label class="custom-file-label" for="img-file-'+(i)+'">Choose file</label>'+
+                                            '<input name="q['+(i)+'][image]" type="file" class="custom-file-input" id="img-file-'+(i)+'">'+'</div>'+
+                                    '</div>'+
+                                '</div>'+
+                            '</li>'+
+                        '</ul>';
+        }
+
+        document.getElementById("question").innerHTML = section;
+        document.getElementById("add-question").style.display = "block";
+    }
+
+
+</script>
 @endsection

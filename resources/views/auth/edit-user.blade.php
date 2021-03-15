@@ -10,6 +10,12 @@
                 <div class="card mb-4">
                     <div class="card-body">
                         <h3>Thay đổi thông tin cá nhân</h3>
+                        @if (session('edit_info'))
+                        @php($messageKey = Session::get('edit_info'))
+                        <div class="alert alert-{{ $messageKey }} " role="alert">
+                            {{ __("message.edit-user.{$messageKey}") }}
+                        </div>
+                        @endif 
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item">
                                 <div class="row">
@@ -37,7 +43,7 @@
                             <li class="list-group-item">
                                 <div class="form-cotrol row">
                                     <label for="edit-email">Email:</label>
-                                    <input name="email" class="form-control col-sm-10 ml-auto" id="edit-email" type="text" value="{{$user->email}}">
+                                    <input name="email" class="form-control col-sm-10 ml-auto" id="edit-email" type="text" value="{{$user->email}}" disabled>
                                 </div>
                             </li>
                             <li class="list-group-item">
@@ -46,7 +52,8 @@
                                     <input name="mobile" class="form-control col-sm-10 ml-auto" id="edit-mobile" type="text" value="{{$user->mobile}}">
                                 </div>
                             </li>
-                            <li class="list-group-item">
+                            
+                            <!-- <li class="list-group-item">
                                 <div class="form-cotrol row">
                                     <label for="role">Quyền:</label>
                                     <input name="role" class="form-control col-sm-10 ml-auto" id="role" type="text" value="@if($user->role == 0)Superadmin
@@ -62,19 +69,20 @@
                                                                                                                                 @elseif($user->status == 0)Vô hiệu hóa
                                                                                                                                 @endif" disabled>
                                 </div>
-                            </li>
+                            </li> -->
+                           
                             <li class="list-group-item ml-auto">
-                                <button class="btn btn-primary btn-icon-split" type="submit">
-                                    <span class="icon text-white-50">
-                                    <i class="fas fa-check"></i>
-                                    </span>
-                                    <span class="text">Chỉnh sửa</span>
-                                </button>
                                 <button class="btn btn-danger btn-icon-split">
                                     <span class="icon text-white-50">
                                     <i class="fas fa-trash"></i>
                                     </span>
                                     <span class="text"><a href="{{route ('admin.user-manage.user-manage')}}">Hủy</a></span>
+                                </button>
+                                <button class="btn btn-primary btn-icon-split" type="submit">
+                                    <span class="icon text-white-50">
+                                    <i class="fas fa-check"></i>
+                                    </span>
+                                    <span class="text">Chỉnh sửa</span>
                                 </button>
                             </li>
                         </ul>

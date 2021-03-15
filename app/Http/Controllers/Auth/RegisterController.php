@@ -54,7 +54,8 @@ class RegisterController extends Controller
             'mobile',
         ]);
         Repository::getUser()->create($input);
-        Mail::to($input['email'])->send(new UserRegistered($input['username'],$input['email']));
-        return view('welcome');
+        Mail::to($input['email'])->send(new UserRegistered($input['username'], $input['email']));
+        $alert = "Đăng ký tài khoản thành công!";
+        return view('auth.register', ['alert'=>$alert]);
     }
 }

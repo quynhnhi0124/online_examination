@@ -26,11 +26,25 @@ class RegisterRequest extends FormRequest
         return [
             'firstname' => 'required|string|max: 32',
             'lastname' => 'required|string|max: 100',
-            'username' => 'required|string|max:255',
-            'email' => 'required|string|email:rfc,dns|max:255|unique:users',
-            'password' => 'required|string|min:6|confirmed',
+            'username' => 'required|string|max:32',
+            'email' => 'required|string|email:rfc,dns|max:100|unique:users',
+            'password' => 'required|string|min:6|',
+            'password_confirm'=>'required_with:password|string|same:password',
             'mobile' => 'required|string|max:13',
             
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'firstname.max'=>"Giới hạn 32 kí tự",
+            'lastname.max'=>"Giới hạn 100 kí tự",
+            'username.max'=>"Giới hạn 32 kí tự",
+            'email.max'=>"Giới hạn số kí tự",
+            'email.unique'=>"Email đã tồn tại",
+            'password.min'=>"Mật khẩu của bạn phải có ít nhất 6 kí tự",
+            'mobile.max'=>"Số điện thoại không quá 13 kí tự",
         ];
     }
 }

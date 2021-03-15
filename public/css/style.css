@@ -1799,3 +1799,6 @@ display: block;
 	color: #111;
 }
 
+table th{
+	align-items: center;
+}

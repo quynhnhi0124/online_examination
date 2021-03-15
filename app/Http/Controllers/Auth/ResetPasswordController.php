@@ -2,9 +2,14 @@
 
 namespace App\Http\Controllers\Auth;
 
+use Auth;
+use App\Repositories\Repository;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
 use App\Providers\RouteServiceProvider;
+use App\Http\Requests\ResetPasswordRequest;
 use Illuminate\Foundation\Auth\ResetsPasswords;
+
 
 class ResetPasswordController extends Controller
 {
@@ -19,12 +24,24 @@ class ResetPasswordController extends Controller
     |
     */
 
-    use ResetsPasswords;
+    // use ResetsPasswords;
 
-    /**
-     * Where to redirect users after resetting their password.
-     *
-     * @var string
-     */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    public function getChange($id)
+    {
+        return view('auth.passwords.change-password');
+    }
+
+    public function changePassword($id, ResetPasswordRequest $request)
+    {
+        if(Hash::check($request["current-password"], Auth::user()->password)){
+            $input = [
+                'password'=>$request["password"],
+            ];
+            Repository::getUser()->update($id, $input);
+            return redirect()->back()->with('notification', 'success');    
+        } 
+        else{
+            return redirect()->back()->with('notification', 'danger');    
+        }
+    }
 }
